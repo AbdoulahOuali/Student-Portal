@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">StudentPortal</string>
+    <string name="action_settings">Settings</string>
+    <string name="url_1_tv">https://vlo.informatica.hva.nl</string>
+    <string name="title_1_tv">Vlo</string>
+    <string name="title_2_tv">Roosters</string>
+    <string name="url_2_tv">http://roosters.hva.nl</string>
+    <string name="title_3_tv">Sis</string>
+    <string name="url_3_tv">http://sis.hva.nl</string>
+    <string name="title_4_tv">HvA</string>
+    <string name="url_4_tv">http://hva.nl</string>
+</resources>
