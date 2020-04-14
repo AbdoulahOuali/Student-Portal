@@ -1,3 +1,7 @@
 package com.abdoulahouali.level3.task2.studentportal
 
-data class StudentPortal(var name: String, var url: String)
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
+data class StudentPortal(var title: String, var url: String) : Parcelable

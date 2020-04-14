@@ -9,4 +9,7 @@
     <string name="url_3_tv">http://sis.hva.nl</string>
     <string name="title_4_tv">HvA</string>
     <string name="url_4_tv">http://hva.nl</string>
+    <string name="add_portal_name">Create a portal</string>
+    <string name="add_portal_btn_txt">add portal_btn_txt</string>
+    <string name="name">Name</string>
 </resources>

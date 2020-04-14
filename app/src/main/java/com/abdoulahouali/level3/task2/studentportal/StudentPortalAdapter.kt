@@ -24,7 +24,7 @@ class StudentPortalAdapter(private val studentPortalList: List<StudentPortal>) :
     override fun onBindViewHolder(holder: PortalViewHolder, position: Int) {
         val currentStudentPortal = studentPortalList[position]
 
-        holder.titleTextView.text = currentStudentPortal.name
+        holder.titleTextView.text = currentStudentPortal.title
         holder.urlTextView.text = currentStudentPortal.url
 
     }

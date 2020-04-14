@@ -1,20 +1,21 @@
 package com.abdoulahouali.level3.task2.studentportal
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 
+const val NEW_STUDENT_PORTAL = "NEW_STUDENT_PORTAL"
+const val INITIAL_STUDENT_PORTALS = "INITIAL_STUDENT_PORTALS"
+private const val SPAN_COUNT = 2
+
 class MainActivity : AppCompatActivity() {
 
-    private val studentPortals = arrayListOf<StudentPortal>()
-    private val studentPortalAdapter =
-        StudentPortalAdapter(
-            studentPortals
-        )
-    private val spanCount = 2
+    private var studentPortals = arrayListOf<StudentPortal>()
+    private lateinit var studentPortalAdapter: StudentPortalAdapter
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,17 +23,34 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         populateInitialDataSet()
-        initViews()
 
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+        fab.setOnClickListener {
+            val addStudentPortalIntent = Intent(this, AddStudentPortalActivity::class.java).apply {
+                putExtra(INITIAL_STUDENT_PORTALS, studentPortals)
+            }
+            startActivity(addStudentPortalIntent)
         }
+
+        initializeViews()
     }
 
-    private fun initViews() {
+    private fun initializeViews() {
+        val listOfStudentPortals = intent.getParcelableArrayListExtra<StudentPortal>(INITIAL_STUDENT_PORTALS)
+        val newStudentPortal = intent.getParcelableExtra<StudentPortal>(NEW_STUDENT_PORTAL)
+
+        if (listOfStudentPortals != null) {
+            this.studentPortals = listOfStudentPortals
+            if (newStudentPortal != null) {
+                this.studentPortals.add(newStudentPortal)
+                println(newStudentPortal.title)
+                println(newStudentPortal.url)
+            }
+        }
+
+        studentPortalAdapter = StudentPortalAdapter(this.studentPortals)
+
         portal_recycler_view.layoutManager =
-            GridLayoutManager(this@MainActivity, spanCount, GridLayoutManager.VERTICAL, false)
+            GridLayoutManager(this@MainActivity, SPAN_COUNT, GridLayoutManager.VERTICAL, false)
 
         portal_recycler_view.adapter = studentPortalAdapter
     }
